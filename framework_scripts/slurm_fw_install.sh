@@ -16,9 +16,7 @@ if rpm -qa | grep -q "^slurm-"; then
     dnf remove -y slurm slurm-libs pmix || true
 fi
 
-############################
 # CONFIG
-############################
 
 MUNGE_VER="0.5.16"
 HWLOC_VER="2.11.2"
@@ -32,18 +30,14 @@ MUNGE_PREFIX="$APP_DIR/munge/$MUNGE_VER"
 HWLOC_PREFIX="$APP_DIR/hwloc/$HWLOC_VER"
 SLURM_PREFIX="$APP_DIR/slurm/$SLURM_VER"
 
-############################
 # ROOT CHECK
-############################
 
 if [[ $EUID -ne 0 ]]; then
   echo "Run as root"
   exit 1
 fi
 
-############################
 # OS DETECTION
-############################
 
 detect_os() {
   if command -v apt &>/dev/null; then
@@ -76,9 +70,7 @@ install_deps() {
   esac
 }
 
-############################
 # USERS
-############################
 
 create_user_group() {
   groupadd -r munge 2>/dev/null || true
@@ -88,9 +80,7 @@ create_user_group() {
   useradd -r -g slurm -s /sbin/nologin slurm 2>/dev/null || true
 }
 
-############################
 # MUNGE BUILD
-############################
 
 install_munge() {
 
@@ -111,9 +101,7 @@ install_munge() {
   fi
 }
 
-############################
 # HWLOC BUILD
-############################
 
 build_hwloc() {
 
@@ -132,9 +120,7 @@ build_hwloc() {
   make install
 }
 
-############################
 # SLURM BUILD
-############################
 
 build_slurm() {
 
@@ -166,9 +152,7 @@ EOF
 
 chmod +x /etc/profile.d/hpc.sh
 
-############################
 # DATABASE
-############################
 
 setup_db() {
   systemctl enable mariadb || true
@@ -180,9 +164,7 @@ setup_db() {
   mysql -u root -e "FLUSH PRIVILEGES;"
 }
 
-############################
 # SLURM CONFIG
-############################
 
 generate_slurm_conf() {
 
@@ -206,9 +188,7 @@ EOF
   echo "PartitionName=debug Nodes=ALL Default=YES MaxTime=INFINITE State=UP" >> /etc/slurm/slurm.conf
 }
 
-############################
 # DIRECTORIES
-############################
 
 setup_dirs() {
 
@@ -220,9 +200,7 @@ setup_dirs() {
   chown -R slurm:slurm /var/log/slurm
 }
 
-############################
 # SYSTEMD SERVICES
-############################
 
 create_services() {
 
@@ -259,9 +237,7 @@ EOF
   systemctl daemon-reload
 }
 
-############################
 # START SERVICES
-############################
 
 if [ ! -S /run/munge/munge.socket.2 ]; then
     echo "Munge socket missing. Aborting."
@@ -275,9 +251,7 @@ start_services() {
   systemctl restart slurmd || true
 }
 
-############################
 # MAIN
-############################
 
 main() {
 
