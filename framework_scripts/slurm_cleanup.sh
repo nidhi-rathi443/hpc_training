@@ -42,6 +42,7 @@ rm -rf /var/log/slurm
 rm -rf /var/log/munge
 rm -rf /var/lib/munge
 rm -rf /run/slurm
+rm -rf /var/spool/slurmctld/clustername
 
 echo "Dropping Slurm database (if exists)..."
 
