@@ -12,6 +12,17 @@ echo "Removing installed toolchain..."
 sudo rm -rf $INSTALL_DIR
 sudo rm -rf $SRC_DIR
 
+if [ -f /etc/debian_version ]; then
+    PKG="apt"
+
+elif command -v dnf >/dev/null 2>&1; then
+    PKG="dnf"
+
+else
+    echo "Unsupported distro"
+    exit 1
+fi
+
 # Remove dependencies
 
 if [ -f /etc/debian_version ]; then
@@ -31,16 +42,21 @@ if [ -f /etc/debian_version ]; then
 
 elif [ -f /etc/redhat-release ]; then
 
-    sudo yum groupremove -y "Development Tools"
+    echo "Removing dependencies..."
 
-    sudo yum remove -y \
+    sudo dnf remove -y \
+        gcc gcc-c++ \
+        make \
+        cmake \
         wget \
         curl \
-        cmake \
         openssl-devel \
         bzip2-devel \
         libffi-devel \
         zlib-devel
+
+    sudo dnf autoremove -y
+    sudo dnf clean all
 
 fi
 
