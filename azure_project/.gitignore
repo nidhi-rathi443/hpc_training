@@ -1,0 +1,4 @@
+azure_project/
+__pycache__/
+*.pyc
+*.h5
