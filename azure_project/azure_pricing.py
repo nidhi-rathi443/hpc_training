@@ -23,13 +23,11 @@ def safe_request(url, retries=3):
 # -----------------------------
 # FETCH AZURE PRICING (LIMITED)
 # -----------------------------
-def fetch_pricing(region):
-    print(f"\nFetching pricing for region: {region}")
+def fetch_pricing():
+    print("Fetching ALL Azure VM pricing (this may take time)...")
 
-    url = f"https://prices.azure.com/api/retail/prices?$filter=serviceName eq 'Virtual Machines' and armRegionName eq '{region}' and priceType eq 'Consumption'"
-
+    url = "https://prices.azure.com/api/retail/prices?$filter=serviceName eq 'Virtual Machines'"
     all_data = []
-    page_count = 0
 
     while url:
         res = safe_request(url)
@@ -40,15 +38,23 @@ def fetch_pricing(region):
         all_data.extend(res["Items"])
         url = res.get("NextPageLink")
 
-        page_count += 1
-        print(f"Fetched page {page_count}")
+        print(f"Fetched records: {len(all_data)}")
 
-        # safety limit (avoid huge downloads)
-        if page_count >= 20:
-            break
-
-    print(f"Total records fetched: {len(all_data)}")
+    print(f"\n✅ Total records fetched: {len(all_data)}")
     return all_data
+
+# -----------------------------
+# Get all regions
+# ----------------------------
+def get_all_regions(pricing_data):
+    regions = set()
+
+    for item in pricing_data:
+        region = item.get("armRegionName")
+        if region:
+            regions.add(region)
+
+    return sorted(list(regions))
 
 
 # -----------------------------
@@ -108,9 +114,6 @@ def process_data(pricing_data, spec_map):
     seen = set()
 
     for item in pricing_data:
-        if "Linux" not in item.get("productName", ""):
-            continue
-
         instance = item.get("armSkuName")
         price = item.get("retailPrice")
 
@@ -180,24 +183,25 @@ def save_hdf5(region_data):
 # MAIN
 # -----------------------------
 if __name__ == "__main__":
-    # Choose limited regions (SAFE)
-    regions = ["eastus", "centralindia"]
+    pricing_data = fetch_pricing()
 
-    spec_map = fetch_vm_specs()
+    regions = get_all_regions(pricing_data)
+
+    print(f"\nTotal regions found: {len(regions)}")
 
     all_region_data = {}
 
     for region in regions:
-        pricing_data = fetch_pricing(region)
+        print(f"\nProcessing region: {region}")
 
-        if not pricing_data:
-            print(f"⚠️ No data for {region}")
-            continue
+        region_data = [
+            item for item in pricing_data
+            if item.get("armRegionName") == region
+        ]
 
-        processed = process_data(pricing_data, spec_map)
+        processed = process_data(region_data, {})
 
         if len(processed["Instance"]) == 0:
-            print(f"⚠️ No valid instances for {region}")
             continue
 
         print_data(region, processed)
