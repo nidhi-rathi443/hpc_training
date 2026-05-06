@@ -1,0 +1,4 @@
+Case ID   : case_035
+Benchmark : stream
+Compiler  : intel
+Threads   : 4

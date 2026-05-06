@@ -15,7 +15,7 @@ NC='\033[0m'
 
 print_banner() {
 echo -e "${BLUE}"
-echo "        SLURM HPC FRAMEWORK"
+echo "       SLURM HPC FRAMEWORK"
 echo "Version : $VERSION"
 echo "Author  : $AUTHOR"
 echo "Build   : $BUILD_DATE"
@@ -131,7 +131,8 @@ submit_test_job() {
 
 echo "Submitting test job to Slurm..."
 
-cat <<EOF > /tmp/hpc_test_job.sh
+#cat <<EOF > /tmp/hpc_test_job.sh
+
 #!/bin/bash
 #SBATCH --job-name=hpc_test
 #SBATCH --output=/tmp/hpc_test.out
@@ -141,7 +142,7 @@ echo "Running on:"
 hostname
 sleep 30
 echo "Test job completed"
-EOF
+EOF 
 
 chmod +x /tmp/hpc_test_job.sh
 
@@ -225,6 +226,7 @@ esac
 # ./slurm_cli.sh --submit_test_job
 # bash slurm_cli.sh --partition HPC
 # bash slurm_cli.sh --version
+#  ./slurm_cli.sh --help
 
 # python3 cli.py --logs
 # python3 cli.py --cluster_info

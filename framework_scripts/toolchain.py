@@ -86,3 +86,7 @@ if __name__ == "__main__":
 # python3 toolchain.py --cleanup_toolchain
 # python3 toolchain.py --test_mpi
 
+# mpicc test_mpi.c -o test_mpi
+# mpirun -np 4 ./test_mpi
+
+

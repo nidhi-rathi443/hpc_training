@@ -1,0 +1,4 @@
+Case ID   : case_052
+Benchmark : hpcg
+Compiler  : intel
+Threads   : 2

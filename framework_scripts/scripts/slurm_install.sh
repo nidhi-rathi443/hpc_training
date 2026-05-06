@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+# ===== CHECK IF SLURM ALREADY INSTALLED =====
+if [ -x "/opt/hpc/apps/slurm/24.11.1/sbin/slurmctld" ]; then
+    echo -e "\033[1;33m⚠️  Slurm already installed. Skipping installation...\033[0m"
+    exit 0
+fi
+
 SLURM_VER="24.11.1"
 HWLOC_VER="2.11.2"
 

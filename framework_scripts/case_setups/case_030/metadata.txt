@@ -1,0 +1,4 @@
+Case ID   : case_030
+Benchmark : hpcg
+Compiler  : intel
+Threads   : 1

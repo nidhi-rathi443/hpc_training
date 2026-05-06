@@ -1,0 +1,42 @@
+===== JOB START =====
+Running stream | intel | Threads=4
+Loaded compiler: intel
+/opt/intel/oneapi/mpi/2021.17/bin/mpirun
+CC=icc
+Total cores: 4
+OMP threads: 4
+MPI procs: 1
+-------------------------------------------------------------
+STREAM version $Revision: 5.10 $
+-------------------------------------------------------------
+This system uses 8 bytes per array element.
+-------------------------------------------------------------
+Array size = 80000000 (elements), Offset = 0 (elements)
+Memory per array = 610.4 MiB (= 0.6 GiB).
+Total memory required = 1831.1 MiB (= 1.8 GiB).
+Each kernel will be executed 10 times.
+ The *best* time for each kernel (excluding the first iteration)
+ will be used to compute the reported bandwidth.
+-------------------------------------------------------------
+Number of Threads requested = 4
+Number of Threads counted = 4
+-------------------------------------------------------------
+Your clock granularity/precision appears to be 1 microseconds.
+Each test below will take on the order of 91111 microseconds.
+   (= 91111 clock ticks)
+Increase the size of the arrays if this shows that
+you are not getting at least 20 clock ticks per test.
+-------------------------------------------------------------
+WARNING -- The above is only a rough guideline.
+For best results, please be sure you know the
+precision of your system timer.
+-------------------------------------------------------------
+Function    Best Rate MB/s  Avg time     Min time     Max time
+Copy:           13856.4     0.093847     0.092376     0.096444
+Scale:          10143.6     0.128558     0.126188     0.131663
+Add:            11225.7     0.172902     0.171036     0.176235
+Triad:          11421.6     0.168864     0.168103     0.169748
+-------------------------------------------------------------
+Solution Validates: avg error less than 1.000000e-13 on all three arrays
+-------------------------------------------------------------
+===== JOB END =====

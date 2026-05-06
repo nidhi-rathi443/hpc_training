@@ -1,6 +1,15 @@
 #!/bin/bash
 set -e
 
+# ===== CHECK IF TOOLCHAIN ALREADY INSTALLED =====
+if [ -x "/usr/bin/gcc" ] && \
+   [ -x "/home/nidhi/hpc_training/framework_scripts/venv/bin/python3" ] && \
+   [ -x "/opt/intel/oneapi/mpi/2021.17/bin/mpirun" ]; then
+
+    echo -e "\033[1;33m⚠️  Full HPC toolchain already installed. Skipping...\033[0m"
+    exit 0
+fi
+
 INSTALL_DIR=/opt/hpc
 SRC_DIR=/tmp/hpc_sources
 

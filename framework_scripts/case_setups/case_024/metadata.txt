@@ -1,0 +1,4 @@
+Case ID   : case_024
+Benchmark : stream
+Compiler  : aocc
+Threads   : 1

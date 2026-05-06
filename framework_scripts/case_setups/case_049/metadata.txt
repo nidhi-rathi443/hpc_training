@@ -1,0 +1,4 @@
+Case ID   : case_049
+Benchmark : hpcg
+Compiler  : aocc
+Threads   : 2

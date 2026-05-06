@@ -1,0 +1,42 @@
+===== JOB START =====
+Running stream | aocc | Threads=1
+Loaded compiler: aocc
+/opt/openmpi-aocc/bin/mpirun
+CC=clang
+Total cores: 1
+OMP threads: 1
+MPI procs: 1
+-------------------------------------------------------------
+STREAM version $Revision: 5.10 $
+-------------------------------------------------------------
+This system uses 8 bytes per array element.
+-------------------------------------------------------------
+Array size = 80000000 (elements), Offset = 0 (elements)
+Memory per array = 610.4 MiB (= 0.6 GiB).
+Total memory required = 1831.1 MiB (= 1.8 GiB).
+Each kernel will be executed 10 times.
+ The *best* time for each kernel (excluding the first iteration)
+ will be used to compute the reported bandwidth.
+-------------------------------------------------------------
+Number of Threads requested = 1
+Number of Threads counted = 1
+-------------------------------------------------------------
+Your clock granularity/precision appears to be 1 microseconds.
+Each test below will take on the order of 105178 microseconds.
+   (= 105178 clock ticks)
+Increase the size of the arrays if this shows that
+you are not getting at least 20 clock ticks per test.
+-------------------------------------------------------------
+WARNING -- The above is only a rough guideline.
+For best results, please be sure you know the
+precision of your system timer.
+-------------------------------------------------------------
+Function    Best Rate MB/s  Avg time     Min time     Max time
+Copy:           12218.4     0.118130     0.104760     0.132275
+Scale:           8595.9     0.185370     0.148909     0.371562
+Add:             8942.0     0.288698     0.214716     0.758495
+Triad:           9849.0     0.246143     0.194943     0.448112
+-------------------------------------------------------------
+Solution Validates: avg error less than 1.000000e-13 on all three arrays
+-------------------------------------------------------------
+===== JOB END =====

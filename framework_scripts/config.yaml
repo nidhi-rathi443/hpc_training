@@ -1,0 +1,29 @@
+# ================= COMPILERS =================
+compilers:
+  - aocc
+  - intel
+
+# ================= BENCHMARKS =================
+benchmarks:
+  - hpl
+  - hpcg
+  - stream
+
+# ================= GLOBAL THREADS =================
+# These are filtered automatically based on available CPUs
+threads:
+  - 1
+  - 2
+  - 4
+
+# =============== Iterations ===================
+iterations: 2
+
+# ================= SLURM CONFIG =================
+slurm:
+  partition: Mini-Caribou     
+  time: "00:30:00"
+  nodes: 1
+  mem: "2G"
+  job_name_prefix: bench
+
