@@ -15,3 +15,5 @@ output.json
 
 # VS Code
 .vscode/
+
+framework_scripts/aws/
