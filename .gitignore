@@ -1,19 +1,21 @@
+# Python
+venv/
+__pycache__/
+
+# AWS
+.aws/
+*.pem
+
 # Terraform
 .terraform/
 *.tfstate
 *.tfstate.backup
 
-# Python
-venv/
-__pycache__/
-
-# AWS Keys
-*.pem
-
 # Outputs
 output.json
 
+# Zip Files
+*.zip
+
 # VS Code
 .vscode/
-
-framework_scripts/aws/
