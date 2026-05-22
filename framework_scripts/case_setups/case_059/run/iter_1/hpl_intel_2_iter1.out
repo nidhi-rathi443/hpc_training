@@ -1,0 +1,118 @@
+===== JOB START =====
+Running hpl | intel | Threads=2
+Loaded compiler: intel
+/opt/intel/oneapi/mpi/2021.17/bin/mpirun
+CC=icc
+Total cores: 2
+OMP threads: 2
+MPI procs: 1
+================================================================================
+HPLinpack 2.3  --  High-Performance Linpack benchmark  --   December 2, 2018
+Written by A. Petitet and R. Clint Whaley,  Innovative Computing Laboratory, UTK
+Modified by Piotr Luszczek, Innovative Computing Laboratory, UTK
+Modified by Julien Langou, University of Colorado Denver
+================================================================================
+
+An explanation of the input/output parameters follows:
+T/V    : Wall time / encoded variant.
+N      : The order of the coefficient matrix A.
+NB     : The partitioning blocking factor.
+P      : The number of process rows.
+Q      : The number of process columns.
+Time   : Time in seconds to solve the linear system.
+Gflops : Rate of execution for solving the linear system.
+
+The following parameter values will be used:
+
+N      :   10000 
+NB     :     256 
+PMAP   : Row-major process mapping
+P      :       1 
+Q      :       1 
+PFACT  :   Crout 
+NBMIN  :       2 
+NDIV   :       2 
+RFACT  :   Crout 
+BCAST  :   1ring 
+DEPTH  :       0 
+SWAP   : Mix (threshold = 64)
+L1     : transposed form
+U      : transposed form
+EQUIL  : yes
+ALIGN  : 8 double precision words
+
+--------------------------------------------------------------------------------
+
+- The matrix A is randomly generated for each test.
+- The following scaled residual check will be computed:
+      ||Ax-b||_oo / ( eps * ( || x ||_oo * || A ||_oo + || b ||_oo ) * N )
+- The relative machine precision (eps) is taken to be               1.110223e-16
+- Computational tests pass if scaled residuals are less than                16.0
+
+Column=000000256 Fraction= 2.6% Gflops=4.489e+01
+Column=000000512 Fraction= 5.1% Gflops=4.571e+01
+Column=000000768 Fraction= 7.7% Gflops=4.584e+01
+Column=000001024 Fraction=10.2% Gflops=4.551e+01
+Column=000001280 Fraction=12.8% Gflops=4.598e+01
+Column=000001536 Fraction=15.4% Gflops=4.589e+01
+Column=000001792 Fraction=17.9% Gflops=4.589e+01
+Column=000002048 Fraction=20.5% Gflops=4.616e+01
+Column=000002304 Fraction=23.0% Gflops=4.599e+01
+Column=000002560 Fraction=25.6% Gflops=4.598e+01
+Column=000002816 Fraction=28.2% Gflops=4.609e+01
+Column=000003072 Fraction=30.7% Gflops=4.613e+01
+Column=000003328 Fraction=33.3% Gflops=4.610e+01
+Column=000003584 Fraction=35.8% Gflops=4.602e+01
+Column=000003840 Fraction=38.4% Gflops=4.603e+01
+Column=000004096 Fraction=41.0% Gflops=4.601e+01
+Column=000004352 Fraction=43.5% Gflops=4.597e+01
+Column=000004608 Fraction=46.1% Gflops=4.595e+01
+Column=000004864 Fraction=48.6% Gflops=4.588e+01
+Column=000005120 Fraction=51.2% Gflops=4.582e+01
+Column=000005376 Fraction=53.8% Gflops=4.573e+01
+Column=000005632 Fraction=56.3% Gflops=4.573e+01
+Column=000005888 Fraction=58.9% Gflops=4.574e+01
+Column=000006144 Fraction=61.4% Gflops=4.573e+01
+Column=000006400 Fraction=64.0% Gflops=4.569e+01
+Column=000006656 Fraction=66.6% Gflops=4.565e+01
+Column=000006912 Fraction=69.1% Gflops=4.562e+01
+Column=000007168 Fraction=71.7% Gflops=4.558e+01
+Column=000007424 Fraction=74.2% Gflops=4.555e+01
+Column=000007680 Fraction=76.8% Gflops=4.551e+01
+Column=000007936 Fraction=79.4% Gflops=4.547e+01
+Column=000008192 Fraction=81.9% Gflops=4.546e+01
+Column=000008448 Fraction=84.5% Gflops=4.544e+01
+Column=000008704 Fraction=87.0% Gflops=4.542e+01
+Column=000008960 Fraction=89.6% Gflops=4.541e+01
+Column=000009216 Fraction=92.2% Gflops=4.540e+01
+Column=000009472 Fraction=94.7% Gflops=4.540e+01
+Column=000009728 Fraction=97.3% Gflops=4.539e+01
+Column=000009984 Fraction=99.8% Gflops=4.539e+01
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR00C2C2       10000   256     1     1              14.72             4.5308e+01
+HPL_pdgesv() start time Fri May  8 04:45:44 2026
+
+HPL_pdgesv() end time   Fri May  8 04:45:59 2026
+
+--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV-
+Max aggregated wall time rfact . . . :               0.50
++ Max aggregated wall time pfact . . :               0.09
++ Max aggregated wall time mxswp . . :               0.04
+Max aggregated wall time update  . . :              14.19
++ Max aggregated wall time laswp . . :               0.71
+Max aggregated wall time up tr sv  . :               0.03
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=   5.25242109e-03 ...... PASSED
+================================================================================
+
+Finished      1 tests with the following results:
+              1 tests completed and passed residual checks,
+              0 tests completed and failed residual checks,
+              0 tests skipped because of illegal input values.
+--------------------------------------------------------------------------------
+
+End of Tests.
+================================================================================
+===== JOB END =====

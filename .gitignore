@@ -1,0 +1,17 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Python
+venv/
+__pycache__/
+
+# AWS Keys
+*.pem
+
+# Outputs
+output.json
+
+# VS Code
+.vscode/

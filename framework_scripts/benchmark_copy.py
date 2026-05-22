@@ -409,12 +409,12 @@ def run_benchmarks(app=None, compiler=None, threads=None, iterations=None):
         for bench in selected_benchmarks:
             for threads in valid_threads:
 
-                # ✅ STEP 1: create case ONCE
+                #  STEP 1: create case ONCE
                 case_dir = create_case_setup(bench, comp, threads)
                 case_name = case_dir.split("/")[-1]
                 print_box(f"CASE SETUP CREATED: {case_name}", "cyan")
 
-                # ✅ STEP 2: build (uses case_dir)
+                #  STEP 2: build (uses case_dir)
                 build_script = generate_build_script(bench, comp, case_dir)
 
                 if not check_binaries(bench, comp):
@@ -425,13 +425,13 @@ def run_benchmarks(app=None, compiler=None, threads=None, iterations=None):
                     print(f"{bench} already exists for {comp} → skipping build")
                     build_status = "SUCCESS"
 
-                # ✅ STEP 3: BUILD BOX 
+                #  STEP 3: BUILD BOX 
                 if build_status == "SUCCESS":
                     print_box(f"BUILD SUCCESSFUL: {case_name}", "green")
                 else:
                     print_box(f"BUILD FAILED: {case_name}", "red")
 
-                # ✅ STEP 4: iterations
+                #  STEP 4: iterations
                 for i in range(final_iters):
 
                     iter_dir = f"{case_dir}/run/iter_{i}"
@@ -611,3 +611,4 @@ def print_summary():
 
 # python3 main.py benchmark --app stream
 # scancel --me
+# python3 main.py benchmark --app hpl --compiler aocc --threads 2 --iterations 1

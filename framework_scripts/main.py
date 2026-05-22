@@ -32,6 +32,43 @@ def run_script(script_name):
     try:
         subprocess.run(["sudo", "bash", script_path], check=True)
         print(f"\n[SUCCESS] {script_name} completed.\n")
+    # try:
+
+    #     # ===== SLURM CHECK =====
+    #     if script_name == "slurm_install.sh":
+
+    #         check = subprocess.run(
+    #             ["which", "slurmctld"],
+    #             capture_output=True,
+    #             text=True
+    #         )
+
+    #         if check.returncode == 0:
+    #             print("\n[SUCCESS] Slurm already installed. Skipping installation.\n")
+    #             return
+
+    #     # ===== TOOLCHAIN CHECK =====
+    #     if script_name == "install_toolchain.sh":
+
+    #         gcc_check = subprocess.run(
+    #             ["which", "gcc"],
+    #             capture_output=True,
+    #             text=True
+    #         )
+
+    #         mpirun_check = subprocess.run(
+    #             ["which", "mpirun"],
+    #             capture_output=True,
+    #             text=True
+    #         )
+
+    #         if gcc_check.returncode == 0 and mpirun_check.returncode == 0:
+    #             print("\n[SUCCESS] Toolchain already installed. Skipping installation.\n")
+    #             return
+
+    #     subprocess.run(["sudo", "bash", script_path], check=True)
+
+    #     print(f"\n[SUCCESS] {script_name} completed.\n")
     except subprocess.CalledProcessError:
         print(f"\n[FAILED] {script_name} execution failed.\n")
         sys.exit(1)
@@ -161,10 +198,10 @@ def main():
             show_help()
             return
 
-    if len(sys.argv) < 2 or sys.argv[1] != "benchmark":
+    """if len(sys.argv) < 2 or sys.argv[1] != "benchmark":
         show_help()
-        return
-
+        return"""
+    
     while True:
         show_menu()
         choice = input("Enter your choice: ")
